@@ -12,3 +12,5 @@ xvfb required to run headlessly
 ```apt-get install xvfb```
 # then run test headed
 ```bundle exec rspec ./specs/*.rb --format documentation```
+# or run headless 
+```HEADLESS=true bundle exec rspec ./specs/*.rb --format documentation```
