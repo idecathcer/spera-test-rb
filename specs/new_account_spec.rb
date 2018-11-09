@@ -12,9 +12,8 @@ describe 'Register a new account' do
     if ENV['HEADLESS'] then
       @headless = Headless.new
       @headless.start
-      @app = CorePage.new(Selenium::WebDriver.for(:chrome))
     end
-
+    @app = CorePage.new(Selenium::WebDriver.for(:chrome))
   end
 
   before :each do
