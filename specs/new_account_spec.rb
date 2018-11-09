@@ -1,5 +1,6 @@
 require 'rspec'
 require 'phantomjs'
+require 'headless'
 require_relative File.dirname(__FILE__) + '/../pages/pages'
 
 RSpec.configure  { include Pages }
@@ -8,7 +9,12 @@ RSpec.configure  { include Pages }
 describe 'Register a new account' do
 
   before :all do
-    @app = CorePage.new(Selenium::WebDriver.for(:chrome))
+    if ENV['HEADLESS'] then
+      @headless = Headless.new
+      @headless.start
+      @app = CorePage.new(Selenium::WebDriver.for(:chrome))
+    end
+
   end
 
   before :each do
@@ -16,6 +22,7 @@ describe 'Register a new account' do
   end
 
   after :all do
+    @headless.destroy if ENV['HEADLESS']
     @app.quit
   end
 
